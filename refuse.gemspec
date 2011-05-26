@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Brian Ryckbost"]
   s.email       = ["brian@collectiveidea.com"]
-  s.homepage    = "http://ryckbost.com"
+  s.homepage    = "http://github.com/collectiveidea/refuse.git"
   s.summary     = %q{Defer garbage collection}
   s.description = %q{Wrap up some common functionality of deferring garbage collection. Often used to speed up test suites by 40%-60%.}
 
