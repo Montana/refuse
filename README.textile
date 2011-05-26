@@ -1,0 +1,33 @@
+h1. Defer garbage collection to speed up your tests.
+
+Spurned on by a burgeoning test suite, and inspired by "Crank Your Specs":http://blog.carbonfive.com/2011/02/02/crank-your-specs/ and "The road to faster tests":http://37signals.com/svn/posts/2742-the-road-to-faster-tests, I've wrapped up the garbage collection hack to make it easy to reuse.
+
+h2. Usage
+
+h3. Rspec
+
+ In your @spec_helper.rb@:
+
+<pre>config.before(:each) do
+  Refuse.disable
+end
+
+config.after(:each) do
+  Refuse.collect
+end</pre>
+
+h3. Cucumber
+
+In @env.rb@:
+
+<pre>Before do
+  Refuse.disable
+end
+
+After do
+  Refuse.collect
+end</pre>
+
+h3. Test::Unit
+
+Coming soon!
