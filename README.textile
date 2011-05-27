@@ -4,11 +4,25 @@ Spurned on by a burgeoning test suite, and inspired by "Crank Your Specs":http:/
 
 It's a bit of a bandaid solution for now, but it gets the job done.
 
+Here's the gist of what Refuse does: clears up some memory leaks by releasing instance variables and defers garbage collection.
+
+Garbage collection is a blocking call, so the more objects you have, the more it wants to run. The more it wants to run, the less your code will run.
+
+So, yes, the caveat is that the memory footprint of your test suite will increase, but can often speed up your tests by 40% or more on Ruby 1.8 and Ruby 1.9.
+
+If you're running REE, you might want to take a look at tweaking the GC settings seen in "Grease Your Suite":http://grease-your-suite.heroku.com/#85:
+
+<pre>export RUBY_HEAP_MIN_SLOTS=1000000
+export RUBY_HEAP_SLOTS_INCREMENT=1000000
+export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
+export RUBY_GC_MALLOC_LIMIT=1000000000
+export RUBY_HEAP_FREE_MIN=500000</pre>
+
 h2. Usage
 
 h3. Rspec
 
- In your @spec_helper.rb@:
+In your @spec_helper.rb@:
 
 <pre>config.before(:each) do
   Refuse.disable
@@ -22,6 +36,10 @@ h3. Cucumber
 
 In @env.rb@:
 
+<pre>require 'refuse/cucumber'</pre>
+
+Or if you want,
+
 <pre>Before do
   Refuse.disable
 end
@@ -32,4 +50,4 @@ end</pre>
 
 h3. Test::Unit
 
-Coming soon!
+Fork this and send me a pull request please.
