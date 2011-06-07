@@ -18,6 +18,10 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000</pre>
 
+h2. Install
+
+Add @gem 'refuse'@ to your @Gemfile@
+
 h2. Usage
 
 h3. Rspec
@@ -47,6 +51,8 @@ end
 After do
   Refuse.collect
 end</pre>
+
+You can use the @@automatic-garbage-collect@ tag to skip the deferred GC.
 
 h3. Test::Unit
 
